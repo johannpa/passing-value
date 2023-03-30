@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{ useState } from 'react';
+import Child from './components/Child';
 
 function App() {
+  const [childData, setChildData] = useState({
+    name: 'unknown',
+    age: 'unknown'
+  });
+
+  const passData = (data) => {
+    setChildData(data);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{padding: 30}}>
+        <Child passData={passData} />
+        <h4>The person info from the Child component:</h4>
+        <p>Name: <strong>{childData.name}</strong></p>
+        <p>Age: <strong>{childData.age}</strong> years old</p>
     </div>
   );
 }
